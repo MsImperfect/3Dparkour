@@ -10,6 +10,14 @@ public class TrophyInteraction : MonoBehaviour
     public Animator animator;
     public GameObject handTrophy;
 
+    void Start()
+    {
+        if(PlayerPrefs.GetInt("won", 0) == 1)
+        {
+            handTrophy.SetActive(true);
+            animator.SetBool("Trophy", true);
+        }
+    }
 
     void Update()
     {
@@ -21,7 +29,8 @@ public class TrophyInteraction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 animator.SetBool("Trophy", true);
-                handTrophy.SetActive(true); 
+                handTrophy.SetActive(true);
+                PlayerPrefs.SetInt("won", 1);
                 tooltipText.SetActive(false);
                 ChatSystem.Instance.sendMessage("System", "You won yayayay!!");
                 Destroy(gameObject);

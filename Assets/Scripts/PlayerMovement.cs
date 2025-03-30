@@ -56,11 +56,6 @@ public class PlayerMovement : MonoBehaviour
             ChatSystem.Instance.DeactivateChatPanel();
             isTyping=false;
         }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("Level1");
-            coin.ResetScore();
-        }
 
     }
 
@@ -126,6 +121,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         lastPosition = gameObject.transform.position;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Level1");
+            coin.ResetScore();
+        }
 
         animator.SetBool("Moving", move.sqrMagnitude > 0);
         animator.SetBool("Crouching", isCrouching);
